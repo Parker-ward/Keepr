@@ -38,6 +38,8 @@ namespace Keepr.Controllers
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
         keepData.CreatorId = userInfo.Id;
         Keep keep = _keepsService.CreateKeep(keepData);
+        keep.Creator = userInfo;
+        // creator?
         return Ok(keep);
       }
       catch (Exception e)
