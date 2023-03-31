@@ -11,7 +11,8 @@ namespace Keepr.Services
 
     internal Keep CreateKeep(Keep keepData)
     {
-      throw new NotImplementedException();
+      Keep keep = _repo.CreateKeep(keepData);
+      return keep;
     }
   }
 }
