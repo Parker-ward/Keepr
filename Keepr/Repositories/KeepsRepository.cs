@@ -22,5 +22,63 @@ namespace Keepr.Repositories
       keepData.Id = id;
       return keepData;
     }
+
+    internal List<Keep> GetKeeps()
+    {
+      string sql = @"
+      SELECT
+      k.*,
+      acct.*
+      FROM keep k
+      JOIN accounts acct ON k.creatorId = acct.id
+      ";
+      List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+      {
+        keep.Creator = profile;
+        return keep;
+      }).ToList();
+      return keeps;
+    }
+
+    internal Keep GetOne(int id)
+    {
+      string sql = @"
+      SELECT
+      k.*,
+      acct.*
+      FROM keep k
+      JOIN accounts acct ON k.creatorId = acct.id
+      WHERE k.id = @id;
+      ";
+      Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+      {
+        keep.Creator = profile;
+        return keep;
+      }, new { id }).FirstOrDefault();
+      return keep;
+    }
+
+    internal int UpdateKeep(Keep origianl)
+    {
+      string sql = @"
+        UPDATE keep
+        SET
+        name = @name,
+        description = @description,
+        img = @img
+        WHERE id = @id;
+        ";
+      int rows = _db.Execute(sql, origianl);
+      return rows;
+    }
+
+    internal bool DeleteKeep(int id)
+    {
+      string sql = @"
+    DELETE FROM keep WHERE id = @id;
+    ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
   }
 }
