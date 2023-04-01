@@ -46,6 +46,12 @@ namespace Keepr.Services
       if (!result) throw new Exception("something went wrong when trying to delete");
       return "deleted";
     }
+
+    internal List<Keep> FindByVault(int vaultId)
+    {
+      List<Keep> keeps = _repo.FindByVault(vaultId);
+      return keeps;
+    }
   }
 
 }
