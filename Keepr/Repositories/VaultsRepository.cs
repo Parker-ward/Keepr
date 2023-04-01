@@ -22,5 +22,47 @@ namespace Keepr.Repositories
       vaultData.Id = id;
       return vaultData;
     }
+
+    internal Vault GetOne(int id)
+    {
+      string sql = @"
+     SELECT
+     v.*,
+    acct.*
+    FROM vault v
+    JOIN accounts acct ON v.creatorId = acct.id
+    WHERE v.id = @id;
+     ";
+      Vault vault = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+      {
+        vault.Creator = profile;
+        return vault;
+      }, new { id }).FirstOrDefault();
+      return vault;
+    }
+
+    internal int UpdateVault(Vault original)
+    {
+      string sql = @"
+      UPDATE vault
+      SET
+      name = @name,
+      description = @description,
+      img = @img,
+      isPrivate = @isPrivate
+      WHERE id = @id;
+      ";
+      int rows = _db.Execute(sql, original);
+      return rows;
+    }
+
+    internal bool DeleteVault(int id)
+    {
+      string sql = @"
+     DELETE FROM vault WHERE id = @id;
+     ";
+      int rows = _db.Execute(sql, new { id });
+      return rows == 1;
+    }
   }
 }
