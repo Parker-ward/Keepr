@@ -48,10 +48,10 @@ namespace Keepr.Services
     }
 
 
-    internal List<Keep> FindByVault(int vaultId, Account userInfo)
+    internal List<VaultKeep> FindByVault(int vaultId, Account userInfo)
     {
-      List<Keep> keeps = _repo.FindByVault(vaultId);
-      return keeps;
+      List<VaultKeep> vaultkeeps = _repo.FindByVault(vaultId);
+      return vaultkeeps;
     }
   }
 

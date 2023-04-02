@@ -81,7 +81,7 @@ namespace Keepr.Repositories
       return rows == 1;
     }
 
-    internal List<Keep> FindByVault(int vaultId)
+    internal List<VaultKeep> FindByVault(int vaultId)
     {
       string sql = @"
       SELECT 
@@ -94,13 +94,13 @@ namespace Keepr.Repositories
       WHERE
       vk.creatorId = @creatorId;
       ";
-      List<KeepInVault> vaultsKeeps = _db.Query<KeepInVault, Vault, Profile, KeepInVault>(sql, (vk, v, profile) =>
+      List<KeepInVault> keepInVaults = _db.Query<KeepInVault, Vault, Profile, KeepInVault>(sql, (vk, v, profile) =>
       {
-        vk.CreatorId = v.Id;
+        vk.VaultKeepId = vaultkeep.Id;
         vk.Creator = profile;
         return vk;
       }, new { creatorId }).ToList();
-      return vaultsKeeps;
+      return keepInVaults;
     }
   }
 }
