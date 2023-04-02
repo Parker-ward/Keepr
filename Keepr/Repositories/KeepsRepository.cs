@@ -84,23 +84,23 @@ namespace Keepr.Repositories
     internal List<Keep> FindByVault(int vaultId)
     {
       string sql = @"
-      SELECT
-      vk.*,
-      keep.*,
+      SELECT 
+      vk.*, 
+      v.*,
       creator.*
-      
-      FROM vaultkeep vk
-      JOIN keep keep ON keep.keepId = keep.id
-      JOIN accounts creator ON keep.creatorId = creator.id
-      WHERE vk.vaultId = @vaultId;
+      FROM vaultKeeps vk
+      JOIN vault v ON vk.vaultId = v.id
+      JOIN accounts creator ON vk.creatorId = creator.id
+      WHERE
+      vk.creatorId = @creatorId;
       ";
-      List<VaultKeep> vaultkeep = _db.Query<VaultKeep, Keep, Profile, VaultKeep>(sql, (vk, keep, prof) =>
+      List<KeepInVault> vaultsKeeps = _db.Query<KeepInVault, Vault, Profile, KeepInVault>(sql, (vk, v, profile) =>
       {
-        vaultkeep.vaultkeepId = vaultkeep.Id;
-        vaultkeep.creator = profile;
-        return keep;
-      }, new { vaultId }).ToList();
-      return vaultkeep;
+        vk.CreatorId = v.Id;
+        vk.Creator = profile;
+        return vk;
+      }, new { creatorId }).ToList();
+      return vaultsKeeps;
     }
   }
 }

@@ -80,3 +80,9 @@ VALUES (
         1,
         1
     );
+
+SELECT vk.*, v.*, creator.*
+FROM vaultKeeps vk
+    JOIN vault v ON vk.vaultId = v.id
+    JOIN accounts creator ON vk.creatorId = creator.id
+WHERE vk.creatorId = @userId;
