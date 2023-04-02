@@ -85,18 +85,22 @@ namespace Keepr.Repositories
     {
       string sql = @"
       SELECT
-      keep.*
-      acct.*
-      FROM keep keep
-      JOIN accounts acct ON keep.creatorId = acct.id
-      WHERE keep.vaultId = @vaultId;
+      vk.*,
+      keep.*,
+      creator.*
+      
+      FROM vaultkeep vk
+      JOIN keep keep ON keep.keepId = keep.id
+      JOIN accounts creator ON keep.creatorId = creator.id
+      WHERE vk.vaultId = @vaultId;
       ";
-      List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, prof) =>
+      List<VaultKeep> vaultkeep = _db.Query<VaultKeep, Keep, Profile, VaultKeep>(sql, (vk, keep, prof) =>
       {
-        keep.Creator = prof;
+        vaultkeep.vaultkeepId = vaultkeep.Id;
+        vaultkeep.creator = profile;
         return keep;
       }, new { vaultId }).ToList();
-      return keeps;
+      return vaultkeep;
     }
   }
 }

@@ -47,7 +47,8 @@ namespace Keepr.Services
       return "deleted";
     }
 
-    internal List<Keep> FindByVault(int vaultId)
+
+    internal List<Keep> FindByVault(int vaultId, Account userInfo)
     {
       List<Keep> keeps = _repo.FindByVault(vaultId);
       return keeps;

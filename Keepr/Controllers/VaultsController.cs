@@ -12,6 +12,7 @@ namespace Keepr.Controllers
     {
       _auth = auth;
       _vaultsService = vaultsService;
+      _keepsService = keepsService;
     }
 
     [HttpPost]
@@ -83,12 +84,15 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-    public ActionResult<List<Keep>> FindKeepsInVault(int id)
+    [Authorize]
+
+    public async Task<ActionResult<List<Keep>>> FindKeepsInVault(int id)
     {
       try
       {
-        List<Keep> keeps = _keepsService.FindByVault(id);
-        return keeps;
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        List<Keep> keeps = _keepsService.FindByVault(id, userInfo);
+        return Ok(keeps);
       }
       catch (Exception e)
       {
