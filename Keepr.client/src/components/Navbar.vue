@@ -21,8 +21,12 @@
             <b>Create</b>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><button class="btn btn">Create Keep</button></a></li>
-            <li><a class="dropdown-item" href="#"><button class="btn btn">Create Vault</button></a></li>
+            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createKeepForm"
+                  class="btn btn">Create
+                  Keep</button></a></li>
+            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createVaultForm"
+                  class="btn btn">Create
+                  Vault</button></a></li>
 
           </ul>
         </div>
