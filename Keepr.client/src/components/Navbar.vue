@@ -2,8 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-dark elevation-3 bg px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <img class="rounded-circle elevation-3" alt=""
+          src="https://images.unsplash.com/photo-1560777553-c973b1b7a3c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8a2VlcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          height="45" />
       </div>
+      <h1 class="btn btn selectable text-dark"><b>Home</b></h1>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,8 +15,8 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
+          <router-link :to="{ name: 'About' }" class="btn  lighten-30 selectable ">
+            <b>About</b>
           </router-link>
         </li>
         <div class="dropdown">
