@@ -45,7 +45,7 @@ export default {
             router.push({ name: 'Home', params: { home: '/' } })
           }
         } catch (error) {
-          Pop.error(error, '[submit keep]')
+          Pop.error(error, '[cant submit keep]')
         }
       }
     }
