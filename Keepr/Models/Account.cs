@@ -11,3 +11,8 @@ public class Account : Profile
 {
   public string Email { get; set; }
 }
+
+public class KeepsInVault : Profile
+{
+  public int KeepsInVaultId { get; set; }
+}

@@ -47,12 +47,10 @@ namespace Keepr.Services
       return "deleted";
     }
 
-
-    internal List<VaultKeep> FindByVault(int vaultId, Account userInfo)
+    internal List<KeepsInVault> GetKeepsInVault(int vaultId)
     {
-      List<VaultKeep> vaultkeeps = _repo.FindByVault(vaultId);
-      return vaultkeeps;
+      List<KeepsInVault> keepsInVaults = _repo.GetKeepsInVault(vaultId);
+      return keepsInVaults;
     }
   }
-
 }
