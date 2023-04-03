@@ -30,8 +30,8 @@ INSERT INTO
 VALUES (
         "trees",
         "such tall trees",
-        'https://images.unsplash.com/photo-1462143338528-eca9936a4d09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dHJlZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-        '64056596b253fcef8a1f4da0'
+        'https://images.unsplash.com/photo-1531966662811-c6501e46eda6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cmVkd29vZHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+        '63ff7a1cba75a11b4a016f8b'
     );
 
 CREATE TABLE

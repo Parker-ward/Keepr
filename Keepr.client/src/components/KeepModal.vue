@@ -1,8 +1,5 @@
 <template>
-  <div class="component">
-
-
-  </div>
+  <div>{{ keep.img }}</div>
 </template>
 
 
@@ -10,6 +7,7 @@
 
 
 export default {
+  props: { keep: { type: Object, required: true } },
   setup() {
     return {};
   },
