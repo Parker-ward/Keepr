@@ -1,19 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark elevation-3 bg px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -23,6 +16,10 @@
             About
           </router-link>
         </li>
+        <div>
+          <button>Create Keep</button>
+
+        </div>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
@@ -31,6 +28,7 @@
 </template>
 
 <script>
+
 import Login from './Login.vue'
 export default {
   setup() {
@@ -61,4 +59,7 @@ a:hover {
   }
 }
 
+.bg {
+  background-color: #fef6f0;
+}
 </style>
