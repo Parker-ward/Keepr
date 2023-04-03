@@ -16,10 +16,17 @@
             About
           </router-link>
         </li>
-        <div>
-          <button>Create Keep</button>
+        <div class="dropdown">
+          <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>Create</b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><button class="btn btn">Create Keep</button></a></li>
+            <li><a class="dropdown-item" href="#"><button class="btn btn">Create Vault</button></a></li>
 
+          </ul>
         </div>
+
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
