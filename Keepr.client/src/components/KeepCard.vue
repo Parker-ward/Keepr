@@ -1,7 +1,8 @@
 <template>
   <div class="rounded-circle delete-btn">
-    <button @click="deleteKeep" v-if="account.id == keep.creatorId"
-      class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
+    <div v-if="account.id == keep.creatorId" title="Delete Keep??">
+      <button @click="deleteKeep" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
+    </div>
     <div @click="GetActiveKeep(keep)" data-bs-toggle="collapse" data-bs-target="#keepDetails">
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>

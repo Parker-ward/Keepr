@@ -17,6 +17,10 @@ export default {
     return {
       account: computed(() => AppState.account),
 
+      async getVaults() {
+
+      },
+
       async deleteKeep() {
         try {
           if (await Pop.confirm('Are you sure?')) {
