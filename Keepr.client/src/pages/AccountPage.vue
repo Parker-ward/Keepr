@@ -34,11 +34,16 @@
       <div class="row">
         <div class="col-md-8">
           <h1><b>Vaults</b></h1>
-
         </div>
       </div>
     </div>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div v-for="v in vault" class="col-md-3">
+          <Vault :vault="v" />
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -63,12 +68,14 @@ import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import EditAccount from '../components/EditAccount.vue';
 import KeepCard from '../components/KeepCard.vue';
+import Vault from '../components/Vault.vue'
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from '../services/KeepsService.js';
 
 export default {
   props: { keep: { type: Object, requried: true } },
+  props: { vault: { type: Object, requried: true } },
   setup() {
     onMounted(() => {
       getKeeps()
@@ -89,6 +96,7 @@ export default {
   },
   components: { EditAccount },
   components: { KeepCard },
+  components: { Vault },
 }
 </script>
 
