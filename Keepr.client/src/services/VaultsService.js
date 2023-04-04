@@ -8,6 +8,13 @@ class VaultsService {
     AppState.vaults = res.data
   }
 
+  async createVault(vaultData) {
+    const res = await api.post('api/vaults', vaultData)
+    logger.log('vault created', res.data)
+    AppState.vaults.push(res.data)
+    return res.data
+  }
+
   async deleteVault(vaultId) {
     const res = await api.delete(`api/vaults${vaultId}`)
     logger.log('[That vault has been delete}', res.data)
