@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="row">
+      <div v-if="account.id == keep.creatorId" class="row">
         <div v-for="k in keeps" class="col-md-3">
           <!-- <div v-if="account.id == keep.creatorId"> -->
           <KeepCard :keep="k" />
