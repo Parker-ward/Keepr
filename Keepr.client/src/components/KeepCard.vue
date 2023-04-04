@@ -1,6 +1,6 @@
 <template>
   <div class="rounded-circle delete-btn">
-    <button v-if="account.id == keep.creatorId" class="btn btn-danger pb-2 rounded delete">Delete</button>
+    <button v-if="account.id == keep.creatorId" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
     <div data-bs-toggle="collapse" data-bs-target="#navbarText" @click="GetActiveKeep(keep)">
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>
@@ -50,7 +50,7 @@ export default {
 }
 
 .delete {
-  transform: translateY(100%);
+  transform: translateY(85%);
   height: 33px;
 }
 </style>

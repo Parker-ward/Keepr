@@ -42,14 +42,18 @@
     <div class="row">
       <div class="col-md-8">
         <h1><b>Keeps</b></h1>
-        <div v-if="account.id == keep.creatorId">
-          <div v-for="k in keeps">
-            <KeepCard :keep="k" />
-          </div>
-        </div>
       </div>
     </div>
   </div>
+  <div class="container">
+    <div class="row">
+      <div v-for="k in keeps" class="col-md-3">
+        <!-- <div v-if="account.id == keep.creatorId"> -->
+        <KeepCard :keep="k" />
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
 </template>
 
 <script>
