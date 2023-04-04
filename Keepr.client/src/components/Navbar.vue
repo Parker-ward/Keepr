@@ -20,22 +20,22 @@
           </router-link>
         </li>
         <!-- FIXME Figure out why disabled doesn't work -->
-        <div>
-          <div class="dropdown">
-            <button v-if="account.id" disabled="" class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <b>Create</b>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createKeepForm"
-                    class="btn btn">Create
-                    Keep</button></a></li>
-              <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createVaultForm"
-                    class="btn btn">Create
-                    Vault</button></a></li>
-            </ul>
-          </div>
+
+        <div class="dropdown">
+          <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>Create</b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createKeepForm"
+                  class="btn btn">Create
+                  Keep</button></a></li>
+
+            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createVaultForm"
+                  class="btn btn">Create
+                  Vault</button></a></li>
+          </ul>
         </div>
+
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />

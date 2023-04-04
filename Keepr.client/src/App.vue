@@ -30,13 +30,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ....
+          <CreateVault />
         </div>
       </div>
     </div>
   </div>
   <!-- NOTE KeepCard Modal -->
-  <div class="modal" tabindex="-1" id="createKeepForm">
+  <div class="modal" tabindex="-1" id="keepDetails">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -44,7 +44,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <CreateKeep />
+
         </div>
       </div>
     </div>
@@ -56,6 +56,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import CreateKeep from './components/CreateKeep.vue'
+import CreateVault from './components/CreateVault.vue'
 
 export default {
   props: { keep: { type: Object, required: true } },
@@ -64,7 +65,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeep }
+  components: { Navbar, CreateKeep, CreateVault }
 }
 </script>
 <style lang="scss">
