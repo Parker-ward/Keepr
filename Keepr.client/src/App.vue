@@ -60,7 +60,7 @@ import CreateVault from './components/CreateVault.vue'
 
 export default {
   props: { keep: { type: Object, required: true } },
-  setup() {
+  setup(props) {
     return {
       appState: computed(() => AppState)
     }

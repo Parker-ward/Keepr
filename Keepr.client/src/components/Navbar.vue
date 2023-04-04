@@ -19,8 +19,7 @@
             <b>About</b>
           </router-link>
         </li>
-        <!-- FIXME Figure out why disabled doesn't work -->
-
+        <!-- FIXME Figure out why !account :disabled doesn't work -->
         <div class="dropdown">
           <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <b>Create</b>
@@ -35,7 +34,6 @@
                   Vault</button></a></li>
           </ul>
         </div>
-
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />

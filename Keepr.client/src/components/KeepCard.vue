@@ -2,7 +2,7 @@
   <div class="rounded-circle delete-btn">
     <button @click="deleteKeep" v-if="account.id == keep.creatorId"
       class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
-    <div data-bs-toggle="collapse" data-bs-target="#navbarText" @click="GetActiveKeep(keep)">
+    <div @click="GetActiveKeep(keep)" data-bs-toggle="collapse" data-bs-target="#keepDetails">
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>
     <span class="pt-2 d-flex rounded justify-content-between text-light elevation-2 p-3 name"><b>{{ keep.name

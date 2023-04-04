@@ -28,9 +28,9 @@ INSERT INTO
         creatorId
     )
 VALUES (
-        "trees",
-        "such tall trees",
-        'https://images.unsplash.com/photo-1531966662811-c6501e46eda6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cmVkd29vZHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+        "Space",
+        "The great UNKNOWN",
+        'https://images.unsplash.com/photo-1679542501404-5f994a2ecb4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE1fDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
         '63ff7a1cba75a11b4a016f8b'
     );
 
@@ -85,5 +85,4 @@ SELECT vk.*, v.*, creator.*
 FROM vaultKeeps vk
     JOIN vault v ON vk.vaultId = v.id
     JOIN accounts creator ON vk.creatorId = creator.id
-WHERE
-    vk.creatorId = @creatorId;
+WHERE vk.creatorId = @creatorId;
