@@ -4,8 +4,8 @@
     <div data-bs-toggle="collapse" data-bs-target="#navbarText" @click="GetActiveKeep(keep)">
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>
-    <span class="pt-2 d-flex justify-content-between text-light elevation-2 py-3 name"><b>{{ keep.name }}</b><img
-        class="rounded-circle creator-img" :src="keep.creator.picture" alt=""></span>
+    <span class="pt-2 d-flex justify-content-between text-light elevation-2 p-3 name"><b>{{ keep.name }}</b><img
+        class="rounded-circle p-2 creator-img" :src="keep.creator.picture" alt=""></span>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .creator-img {
-  height: 40px;
+  height: 50px;
   transform: translateY(30%);
 }
 
