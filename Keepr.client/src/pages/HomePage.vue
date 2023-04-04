@@ -1,4 +1,13 @@
 <template>
+  <div class="container-fluid sticky-top">
+    <div class="row">
+      <div class=" text-center col-md-12 mt-3 fs-4">
+        <h1>
+          <b>Keepr</b>
+        </h1>
+      </div>
+    </div>
+  </div>
   <div class="container-fluid bg">
     <section class="bricks">
       <div v-for="k in keeps" class="">
@@ -53,7 +62,7 @@ $gap: 5em;
 }
 
 .bg {
-
   background-color: #fef6f0;
+
 }
 </style>
