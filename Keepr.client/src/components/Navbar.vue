@@ -19,21 +19,23 @@
             <b>About</b>
           </router-link>
         </li>
-        <div class="dropdown">
-          <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <b>Create</b>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createKeepForm"
-                  class="btn btn">Create
-                  Keep</button></a></li>
-            <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createVaultForm"
-                  class="btn btn">Create
-                  Vault</button></a></li>
-
-          </ul>
+        <!-- FIXME Figure out why disabled doesn't work -->
+        <div>
+          <div class="dropdown">
+            <button v-if="account.id" disabled="" class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <b>Create</b>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createKeepForm"
+                    class="btn btn">Create
+                    Keep</button></a></li>
+              <li><a class="dropdown-item" href="#"><button data-bs-toggle="modal" data-bs-target="#createVaultForm"
+                    class="btn btn">Create
+                    Vault</button></a></li>
+            </ul>
+          </div>
         </div>
-
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
@@ -43,10 +45,14 @@
 
 <script>
 
+import { computed } from '@vue/reactivity';
 import Login from './Login.vue'
+import { AppState } from '../AppState.js';
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }

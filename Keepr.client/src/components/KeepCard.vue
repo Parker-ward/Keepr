@@ -5,17 +5,24 @@
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>
     <span class="pt-2 d-flex rounded justify-content-between text-light elevation-2 p-3 name"><b>{{ keep.name
-    }}</b><img class="rounded-circle p-2 creator-img" :src="keep.creator.picture" alt=""></span>
+    }}</b>
+      <!-- <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }"> -->
+      <img class="rounded-circle p-2 creator-img" :src="keep.creator.picture" alt="">
+      <!-- </router-link> -->
+    </span>
   </div>
 </template>
 
 
 <script>
-import { computed } from '@vue/reactivity';
+
+import { reactive, computed } from 'vue';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
+
+
 
 export default {
   props: { keep: { type: Object, required: true } },
@@ -24,17 +31,17 @@ export default {
       account: computed(() => AppState.account),
       async GetActiveKeep(keep) {
         try {
-          await keepsService.GetActiveKeep(keep)
-          await keepsService.getKeeps(keep)
-        } catch (error) {
-          logger.log('[get active keep]')
-          Pop.error(error)
+          await keepsService.GetActiveKeep(keep);
+          await keepsService.getKeeps(keep);
         }
-
+        catch (error) {
+          logger.log("[get active keep]");
+          Pop.error(error);
+        }
       }
+    };
+  },
 
-    }
-  }
 }
 </script>
 
