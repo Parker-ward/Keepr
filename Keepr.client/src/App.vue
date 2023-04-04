@@ -35,6 +35,20 @@
       </div>
     </div>
   </div>
+  <!-- NOTE KeepCard Modal -->
+  <div class="modal" tabindex="-1" id="createKeepForm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <CreateKeep />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -44,6 +58,7 @@ import Navbar from './components/Navbar.vue'
 import CreateKeep from './components/CreateKeep.vue'
 
 export default {
+  props: { keep: { type: Object, required: true } },
   setup() {
     return {
       appState: computed(() => AppState)

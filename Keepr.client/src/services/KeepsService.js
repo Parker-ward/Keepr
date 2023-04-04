@@ -10,7 +10,7 @@ class KeepsService {
     AppState.keeps = res.data
   }
 
-  async getActiveKeep(keepId) {
+  async GetActiveKeep(keepId) {
     const res = await api.get(`api/keeps/${keepId}`)
     logger.log('[Get one keep]', res.data)
     AppState.activeKeep = res.data
