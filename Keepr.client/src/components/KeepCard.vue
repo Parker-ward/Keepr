@@ -1,6 +1,7 @@
 <template>
   <div class="rounded-circle delete-btn">
-    <button v-if="account.id == keep.creatorId" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
+    <button @click="deleteKeep" v-if="account.id == keep.creatorId"
+      class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
     <div data-bs-toggle="collapse" data-bs-target="#navbarText" @click="GetActiveKeep(keep)">
       <img class="img-fluid rounded" :src="keep.img" alt="">
     </div>
@@ -26,7 +27,7 @@ import Pop from '../utils/Pop.js';
 
 export default {
   props: { keep: { type: Object, required: true } },
-  setup() {
+  setup(props) {
     return {
       account: computed(() => AppState.account),
       async GetActiveKeep(keep) {
@@ -37,6 +38,18 @@ export default {
         catch (error) {
           logger.log("[get active keep]");
           Pop.error(error);
+        }
+      },
+
+      async deleteKeep() {
+        try {
+          if (await Pop.confirm('Are you sure?')) {
+            await keepsService.deleteKeep(props.keep.id)
+            Pop.toast('success, keep is deleted')
+          }
+        } catch (error) {
+          logger.error
+          Pop.error(error)
         }
       }
     };
