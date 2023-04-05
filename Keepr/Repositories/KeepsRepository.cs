@@ -102,5 +102,21 @@ namespace Keepr.Repositories
       }, new { vaultId }).ToList();
       return keepInVaults;
     }
+
+    internal List<Keep> GetUserKeeps(int id)
+    {
+      string sql = @"
+      SELECT
+      k.*
+      creator.*
+      FROM keep k
+      JOIN accounts creator ON k.creatorId = creator.id
+      WHERE k.creatorId = @creatorId;
+      ";
+      List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (k, prof) =>
+      {
+
+      });
+    }
   }
 }

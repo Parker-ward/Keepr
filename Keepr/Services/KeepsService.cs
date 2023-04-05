@@ -58,5 +58,11 @@ namespace Keepr.Services
 
       return keepsInVaults;
     }
+
+    internal List<Keep> GetUserKeeps(int id)
+    {
+      List<Keep> keeps = _repo.GetUserKeeps(id);
+      return keeps;
+    }
   }
 }
