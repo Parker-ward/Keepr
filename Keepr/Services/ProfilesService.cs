@@ -9,10 +9,10 @@ namespace Keepr.Services
       _repo = repo;
     }
 
-    internal List<Account> FindProfile(int id, Account userInfo)
+    internal Account FindProfile(string id)
     {
-      List<Account> profiles = _repo.FindProfile();
-      return profiles;
+      Account profile = _repo.FindProfile(id);
+      return profile;
     }
   }
 }

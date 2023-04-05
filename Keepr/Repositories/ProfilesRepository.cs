@@ -9,9 +9,16 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal List<Account> FindProfile()
+    internal Account FindProfile(string id)
     {
-      throw new Exception("Unimplemented method");
+      string sql = @"
+      SELECT
+      *
+      FROM accounts
+      WHERE id = @id;
+      ";
+      Account account = _db.Query<Account>(sql, new { id }).FirstOrDefault();
+      return account;
     }
   }
 }

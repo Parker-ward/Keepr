@@ -15,12 +15,12 @@ namespace Keepr.Controllers
 
     [HttpGet("{id}")]
     [Authorize]
-    async public Task<ActionResult<Account>> FindProfile(int id)
+    async public Task<ActionResult<Account>> FindProfile(string id)
     {
       try
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        List<Account> accounts = _profilesService.FindProfile(id, userInfo);
+        Account accounts = _profilesService.FindProfile(id);
         return Ok(accounts);
       }
       catch (Exception e)
