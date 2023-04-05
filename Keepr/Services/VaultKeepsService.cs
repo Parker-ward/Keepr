@@ -19,5 +19,20 @@ namespace Keepr.Services
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
       return vaultKeep;
     }
+
+    internal VaultKeep Find(int id, string userId)
+    {
+      VaultKeep vaultKeep = _repo.GetOne(id);
+      if (vaultKeep == null) throw new Exception("no vaultkeep at that id");
+      return vaultKeep;
+    }
+
+    internal string DeleteVaultKeep(int id, Account userInfo)
+    {
+      VaultKeep vaultKeep = this.Find(id, userInfo.Id);
+      bool result = _repo.DeleteVautKeep(id);
+      if (!result) throw new Exception("Something went wrong when trying to delete vault keep");
+      return "vault deleted";
+    }
   }
 }

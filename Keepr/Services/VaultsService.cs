@@ -43,6 +43,7 @@ namespace Keepr.Services
     internal string DeleteVault(int id, Account userInfo)
     {
       Vault vault = this.Find(id, userInfo.Id);
+      // if (vault.CreatorId != userId) throw new Exception('Not your Vault bruh');
       // TODO check to see if user has rights to delete, if not throw an error
       bool result = _repo.DeleteVault(id);
       if (!result) throw new Exception("something went wrong when trying to delete vault");

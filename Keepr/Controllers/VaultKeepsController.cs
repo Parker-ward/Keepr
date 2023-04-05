@@ -30,6 +30,22 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<VaultKeep>> DeleteVaultKeep(int id)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        string message = _vaultKeepsService.DeleteVaultKeep(id, userInfo);
+        return Ok(message);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     // TODO write method for deleting vaultkeep...don't overthink this
     // TODO in the service, make sure you are perform a check to see if the user has the rights to delete, if not throw an errror
 

@@ -81,28 +81,6 @@ namespace Keepr.Repositories
       return rows == 1;
     }
 
-    // internal List<VaultKeep> FindByVault(int vaultId)
-    // {
-    //   string sql = @"
-    //   SELECT 
-    //   vk.*, 
-    //   v.*,
-    //   creator.*
-    //   FROM vaultKeeps vk
-    //   JOIN vault v ON vk.vaultId = v.id
-    //   JOIN accounts creator ON vk.creatorId = creator.id
-    //   WHERE
-    //   vk.creatorId = @creatorId;
-    //   ";
-    //   List<KeepInVault> keepInVaults = _db.Query<KeepInVault, Vault, Profile, KeepInVault>(sql, (vk, v, profile) =>
-    //   {
-    //     vk.VaultKeepId = vaultkeep.Id;
-    //     vk.Creator = profile;
-    //     return vk;
-    //   }, new { creatorId }).ToList();
-    //   return keepInVaults;
-    // }
-
     internal List<KeepInVault> GetKeepsInVault(int vaultId)
     {
       string sql = @"
