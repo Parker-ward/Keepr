@@ -36,7 +36,7 @@
     </div>
   </div>
   <!-- NOTE KeepCard Modal -->
-  <div class="modal" tabindex="-1" id="keepDetails">
+  <!-- <div class="modal" tabindex="-1" id="keepDetails">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -48,7 +48,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <KeepModal />
 
   <!-- TODO after copy/pasting ^^^^ into the KeepModal component, bring it in here -->
 </template>
@@ -59,6 +60,7 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import CreateKeep from './components/CreateKeep.vue'
 import CreateVault from './components/CreateVault.vue'
+import KeepModal from './components/KeepModal.vue'
 
 export default {
   props: { keep: { type: Object, required: true } },
@@ -67,7 +69,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, CreateKeep, CreateVault }
+  components: { Navbar, CreateKeep, CreateVault, KeepModal }
 }
 </script>
 <style lang="scss">

@@ -103,20 +103,23 @@ namespace Keepr.Repositories
       return keepInVaults;
     }
 
-    internal List<Keep> GetUserKeeps(int id)
+    internal List<Keep> GetUserKeeps(string id)
     {
       string sql = @"
       SELECT
-      k.*
+      k.*,
       creator.*
       FROM keep k
       JOIN accounts creator ON k.creatorId = creator.id
-      WHERE k.creatorId = @creatorId;
+      WHERE k.creatorId = @id;
       ";
       List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (k, prof) =>
       {
-
-      });
+        // k.CreatorId = k.Id;
+        k.Creator = prof;
+        return k;
+      }, new { id }).ToList();
+      return keeps;
     }
   }
 }

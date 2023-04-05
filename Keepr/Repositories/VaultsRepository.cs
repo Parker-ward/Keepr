@@ -64,5 +64,26 @@ namespace Keepr.Repositories
       int rows = _db.Execute(sql, new { id });
       return rows == 1;
     }
+
+    internal List<Vault> GetUserVaults(string id)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      creator.*
+      FROM vault v
+      JOIN accounts creator ON v.creatorId = creator.id
+      WHERE v.creatorId = @id;
+      ";
+
+      List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, (v, prof) =>
+      {
+        v.Creator = prof;
+        return v;
+      }, new { id }).ToList();
+      return vaults;
+    }
+
+
   }
 }

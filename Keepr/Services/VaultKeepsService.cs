@@ -34,5 +34,7 @@ namespace Keepr.Services
       if (!result) throw new Exception("Something went wrong when trying to delete vault keep");
       return "vault deleted";
     }
+
+
   }
 }

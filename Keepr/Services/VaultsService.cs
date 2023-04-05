@@ -15,12 +15,18 @@ namespace Keepr.Services
       return vault;
     }
 
+    // internal Vault Get(int id, string userId)
+    // {
+
+    // }
+
 
 
     internal Vault EditVault(int id, Vault vaultData, Account userInfo)
     {
 
       Vault original = this.Find(id, userInfo.Id);
+      if (original.CreatorId != userInfo.Id) throw new Exception("not your vault to edit");
       // TODO check to see if user has rights to edit this vault...if not throw an error
       original.Name = vaultData.Name != null ? vaultData.Name : original.Name;
       original.Description = vaultData.Description != null ? vaultData.Description : original.Description;
@@ -34,20 +40,38 @@ namespace Keepr.Services
 
     internal Vault Find(int id, string userId)
     {
+
       Vault vault = _repo.GetOne(id);
-      // TODO does the user have access to this vault if its private?... if not, throw an error
+
+
       if (vault == null) throw new Exception("no vault at that id");
+      if (vault.CreatorId != userId && vault.isPrivate == true) throw new Exception("that is private");
+      // NOTE keeps IN vault
+      // if(vault.CreatorId != userId)
+      // vault.keeps++;
+      // _repo.EditVault(vault)
+      // TODO does the user have access to this vault if its private?... if not, throw an error
       return vault;
     }
 
     internal string DeleteVault(int id, Account userInfo)
     {
       Vault vault = this.Find(id, userInfo.Id);
-      // if (vault.CreatorId != userId) throw new Exception('Not your Vault bruh');
+      if (vault.CreatorId != userInfo.Id) throw new Exception("Not your Vault bruh");
+
       // TODO check to see if user has rights to delete, if not throw an error
       bool result = _repo.DeleteVault(id);
       if (!result) throw new Exception("something went wrong when trying to delete vault");
       return "vault deleted";
     }
+
+    internal List<Vault> GetUserVaults(string id)
+    {
+      List<Vault> vaults = _repo.GetUserVaults(id);
+      // List<Vault> vaults = privateVault.Find(v => v.creatorId == userId || v.isPrivate == false);
+      return vaults;
+    }
+
+
   }
 }
