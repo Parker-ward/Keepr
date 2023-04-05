@@ -3,10 +3,12 @@ namespace Keepr.Services
   public class KeepsService
   {
     private readonly KeepsRepository _repo;
+    private readonly VaultsService _vaultsService;
 
-    public KeepsService(KeepsRepository repo)
+    public KeepsService(KeepsRepository repo, VaultsService vaultsService)
     {
       _repo = repo;
+      _vaultsService = vaultsService;
     }
 
     internal List<Keep> GetKeeps(string id)
@@ -23,8 +25,10 @@ namespace Keepr.Services
 
     internal Keep EditKeep(int id, Keep keepData, Account userInfo)
     {
-      // TODO check to make sure that the user is allowed to edit this...throw an error if not
       Keep original = this.Find(id);
+      if (original.CreatorId != userInfo.Id) throw new Exception("Not your Vault bruh");
+      // TODO check to make sure that the user is allowed to edit this...throw an error if not
+
       original.Name = keepData.Name != null ? keepData.Name : original.Name;
       original.Description = keepData.Description != null ? keepData.Description : original.Description;
       original.Img = keepData.Img != null ? keepData.Img : original.Img;
@@ -44,14 +48,16 @@ namespace Keepr.Services
     {
       // TODO check to make sure user has the right to delete this...throw an error if not
       Keep keep = this.Find(id);
+      if (keep.CreatorId != userInfo.Id) throw new Exception("Not your Vault bruh");
       bool result = _repo.DeleteKeep(id);
       if (!result) throw new Exception("something went wrong when trying to delete");
       return "deleted";
     }
 
-    internal List<KeepInVault> GetKeepsInVault(int vaultId)
+    internal List<KeepInVault> GetKeepsInVault(int vaultId, string userId)
     {
-      // TODO if the user does not have access to the private vaults, throw a Exception/Bad Request
+      Vault vault = _vaultsService.Find(vaultId, userId);
+      if (vault.CreatorId != userId || vault.isPrivate == true) throw new Exception("that is private");
       List<KeepInVault> keepsInVaults = _repo.GetKeepsInVault(vaultId);
 
       // TODO check to see if the user has access to the private vault, if they do return everything, if they don't filter out the private
@@ -61,6 +67,7 @@ namespace Keepr.Services
 
     internal List<Keep> GetUserKeeps(string id)
     {
+
       List<Keep> keeps = _repo.GetUserKeeps(id);
       return keeps;
     }

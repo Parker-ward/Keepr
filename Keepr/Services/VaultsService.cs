@@ -40,12 +40,10 @@ namespace Keepr.Services
 
     internal Vault Find(int id, string userId)
     {
-
       Vault vault = _repo.GetOne(id);
-
-
       if (vault == null) throw new Exception("no vault at that id");
-      if (vault.CreatorId != userId && vault.isPrivate == true) throw new Exception("that is private");
+      if (vault.CreatorId != userId) throw new Exception("Not your Vault bruh");
+
       // NOTE keeps IN vault
       // if(vault.CreatorId != userId)
       // vault.keeps++;

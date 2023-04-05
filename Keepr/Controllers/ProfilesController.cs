@@ -18,7 +18,7 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    [Authorize]
+
     async public Task<ActionResult<Account>> FindProfile(string id)
     {
       try
@@ -34,7 +34,7 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-    [Authorize]
+
     async public Task<ActionResult<Account>> GetUserKeeps(string id)
     {
       try
@@ -50,7 +50,7 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/vaults")]
-    [Authorize]
+
     async public Task<ActionResult<Account>> GetUserVaults(string id)
     {
       try
