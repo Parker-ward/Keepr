@@ -5,10 +5,6 @@
       <input required v-model="editable.name" type="text" class="form-control" id="name" name="name">
     </div>
     <div class="mb-3">
-      <label for="bio" class="form-label">bio</label>
-      <input v-model="editable.bio" type="text" class="form-control" id="bio">
-    </div>
-    <div class="mb-3">
       <label for="picture" class="form-label">picture</label>
       <input required v-model="editable.picture" type="url" class="form-control" id="picture">
     </div>

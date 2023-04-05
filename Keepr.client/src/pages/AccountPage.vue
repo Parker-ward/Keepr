@@ -39,8 +39,8 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div v-for="v in vault" class="col-md-3">
-          <Vault :vault="v" />
+        <div v-for="v in vaults" class="col-md-3">
+          <Vault :vaults="v" />
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="container">
-      <div v-if="account.id == keep.creatorId" class="row">
+      <div class="row">
         <div v-for="k in keeps" class="col-md-3">
           <!-- <div v-if="account.id == keep.creatorId"> -->
           <KeepCard :keep="k" />
@@ -72,6 +72,7 @@ import Vault from '../components/Vault.vue'
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { keepsService } from '../services/KeepsService.js';
+import { vaultsService } from '../services/VaultsService.js';
 
 export default {
   props: { keep: { type: Object, requried: true } },
@@ -86,12 +87,22 @@ export default {
       } catch (error) {
         logger.error(error)
         Pop.error(error)
+      }
+    }
+
+    async function getVaultsById() {
+      try {
+        await vaultsService.getVaultsById()
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
 
       }
     }
     return {
       account: computed(() => AppState.account),
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+      vaults: computed(() => AppState.vaults)
     };
   },
   components: { EditAccount },
