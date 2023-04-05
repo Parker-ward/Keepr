@@ -81,8 +81,15 @@ VALUES (
         1
     );
 
-SELECT vk.*, v.*, creator.*
+SELECT vk.*, k.*, creator.*
 FROM vaultKeeps vk
-    JOIN vault v ON vk.vaultId = v.id
-    JOIN accounts creator ON vk.creatorId = creator.id
-WHERE vk.creatorId = @creatorId;
+    JOIN keep k ON vk.keepId = k.id
+    JOIN accounts creator ON k.creatorId = creator.id
+WHERE
+    vk.vaultId = @vaultId;
+
+SELECT k.* creator.*
+FROM keep k
+    JOIN accounts creator ON k.creatorId = creator.id
+WHERE
+    k.creatorId = @creatorId;
