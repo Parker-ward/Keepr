@@ -29,5 +29,9 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    // TODO write method for deleting vaultkeep...don't overthink this
+    // TODO in the service, make sure you are perform a check to see if the user has the rights to delete, if not throw an errror
+
   }
 }

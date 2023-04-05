@@ -49,12 +49,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Keep>> Find(int id)
+    public ActionResult<Keep> Find(int id)
     {
       try
       {
-        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        Keep keep = _keepsService.Find(id, userInfo.Id);
+        // Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        Keep keep = _keepsService.Find(id);
         return Ok(keep);
       }
       catch (Exception e)

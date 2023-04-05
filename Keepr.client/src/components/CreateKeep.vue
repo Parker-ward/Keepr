@@ -2,7 +2,7 @@
   <form @submit.prevent="handleSubmit">
     <div class="mb-3">
       <label for="Title" class="form-label">Title</label>
-      <textarea required type="text" class="form-control" name="Title" v-model="editable.title" id="title"
+      <textarea required type="text" class="form-control" name="Title" v-model="editable.name" id="title"
         rows="1"></textarea>
     </div>
     <div class="mb-3">

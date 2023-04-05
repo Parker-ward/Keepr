@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main class="bg">
@@ -49,6 +49,8 @@
       </div>
     </div>
   </div>
+
+  <!-- TODO after copy/pasting ^^^^ into the KeepModal component, bring it in here -->
 </template>
 
 <script>

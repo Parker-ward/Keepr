@@ -11,7 +11,7 @@ namespace Keepr.Repositories
 
     internal List<Account> FindProfile()
     {
-
+      throw new Exception("Unimplemented method");
     }
   }
 }

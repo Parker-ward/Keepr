@@ -29,6 +29,7 @@ public class AccountService
     Account original = GetProfileByEmail(userEmail);
     original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
+    // TODO make sure we also include coverImg.. follow this to the repo as well
     return _repo.Edit(original);
   }
 }

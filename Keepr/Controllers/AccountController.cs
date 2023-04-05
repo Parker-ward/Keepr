@@ -27,4 +27,10 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  // TODO write method to get vaults that the acct has created
+
+  // TODO write a method to edit the acct... this is already written in the service/repo so PAY ATTENTION to the parameters
+
+
 }

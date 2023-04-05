@@ -19,7 +19,9 @@ namespace Keepr.Services
 
     internal Vault EditVault(int id, Vault vaultData, Account userInfo)
     {
+
       Vault original = this.Find(id, userInfo.Id);
+      // TODO check to see if user has rights to edit this vault...if not throw an error
       original.Name = vaultData.Name != null ? vaultData.Name : original.Name;
       original.Description = vaultData.Description != null ? vaultData.Description : original.Description;
       original.Img = vaultData.Img != null ? vaultData.Img : original.Img;
@@ -33,6 +35,7 @@ namespace Keepr.Services
     internal Vault Find(int id, string userId)
     {
       Vault vault = _repo.GetOne(id);
+      // TODO does the user have access to this vault if its private?... if not, throw an error
       if (vault == null) throw new Exception("no vault at that id");
       return vault;
     }
@@ -40,6 +43,7 @@ namespace Keepr.Services
     internal string DeleteVault(int id, Account userInfo)
     {
       Vault vault = this.Find(id, userInfo.Id);
+      // TODO check to see if user has rights to delete, if not throw an error
       bool result = _repo.DeleteVault(id);
       if (!result) throw new Exception("something went wrong when trying to delete vault");
       return "vault deleted";
