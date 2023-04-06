@@ -5,6 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
+import { keepsService } from './KeepsService.js'
 import { vaultsService } from './VaultsService.js'
 
 export const AuthService = initialize({
@@ -30,6 +31,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
   // NOTE if there is something you want to do once the user is authenticated, place that here
 
   await vaultsService.getAccountVaults()
+  await keepsService.getAccountKeeps(AppState.account.id)
 
   // TODO go and get the account vaults... make sure to save in a unique collection in appstate
 

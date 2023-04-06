@@ -90,7 +90,7 @@ export default {
     onMounted(() => {
 
       // getKeepsById()
-      getVaultsById()
+      getVaultsByProfileId()
       getAccountVaults()
       getAccountKeeps()
     })
@@ -112,9 +112,9 @@ export default {
       }
     }
 
-    async function getVaultsById() {
+    async function getVaultsByProfileId() {
       try {
-        await vaultsService.getVaultsById(route.params.vaultId)
+        await vaultsService.getVaultsByProfileId(route.params.vaultId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)

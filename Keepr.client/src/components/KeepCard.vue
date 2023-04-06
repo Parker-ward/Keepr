@@ -1,7 +1,10 @@
 <template>
+  {{ keep.vaultKeepId }}
   <div class="rounded-circle delete-btn">
     <div v-if="account.id == keep?.creatorId" title="Delete Keep??">
       <button @click="deleteKeep" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
+      <!-- TODO this button should only show up if its a vaultkeep and its my vault-->
+      <button @click="deleteKeepInVault(keep.vaultKeepId)" class="btn btn-info">Delete Vault Keep</button>
     </div>
     <div @click="GetActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#keepDetails">
       <img class="img-fluid rounded" :src="keep?.img" alt="">
@@ -27,6 +30,7 @@ import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
+import { vaultKeepsService } from '../services/VaultKeepsService.js';
 
 
 
@@ -52,6 +56,18 @@ export default {
           if (await Pop.confirm('Are you sure?')) {
             await keepsService.deleteKeep(props.keep.id)
             Pop.toast('success, keep is deleted')
+          }
+        } catch (error) {
+          logger.error
+          Pop.error(error)
+        }
+      },
+
+      async deleteKeepInVault(Id) {
+        try {
+          if (await Pop.confirm('Are you sure??')) {
+            await vaultKeepsService.deleteKeepInVault(Id)
+            Pop.toast('success, keep in vault has been deleted')
           }
         } catch (error) {
           logger.error

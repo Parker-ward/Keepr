@@ -59,8 +59,8 @@ export default {
     const route = useRoute()
 
     onMounted(() => {
-      getKeepsById();
-      getVaultsById();
+      getKeepsByProfileId();
+      getVaultsByProfileId();
       getUserProfile()
     });
 
@@ -72,11 +72,9 @@ export default {
         logger.error(error)
         Pop.error(error)
       }
-
     }
 
-
-    async function getKeepsById() {
+    async function getKeepsByProfileId() {
       try {
         await keepsService.getProfileKeeps(route.params.profileId);
       }
@@ -85,9 +83,9 @@ export default {
         Pop.error(error);
       }
     }
-    async function getVaultsById() {
+    async function getVaultsByProfileId() {
       try {
-        await vaultsService.getVaultsById(route.params.profileId);
+        await vaultsService.getVaultsByProfileId(route.params.profileId);
       }
       catch (error) {
         logger.error(error);
