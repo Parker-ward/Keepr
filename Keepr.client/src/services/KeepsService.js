@@ -15,13 +15,13 @@ class KeepsService {
   }
   async getProfileKeeps(id) {
     const res = await api.get(`api/profiles/${id}/keeps`)
-    logger.log(']Get on keep]', res.data)
+    logger.log('[Get profile keep]', res.data)
     AppState.profileKeeps = res.data
   }
 
   async getAccountKeeps(id) {
     const res = await api.get(`api/profiles/${id}/keeps`)
-    logger.log(']Get on keep]', res.data)
+    logger.log(']Get account keep]', res.data)
     AppState.accountKeeps = res.data
   }
 

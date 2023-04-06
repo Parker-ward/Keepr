@@ -2,12 +2,41 @@
   <div>
     <h1>Hello profile page </h1>
 
-    <div> profile: {{ profile.name }} </div>
-    <div> profile: {{ profile.picture }} </div>
+    <div> profile: {{ profile?.name }} </div>
+    <div> profile:
+      <img :src="profile?.picture" alt="">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h1><b>Vaults</b></h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div v-for="v in vaults" class="col-md-3">
+          <!-- <div v-if="account.id == keep.creatorId"> -->
+          <Vault :vault="v" />
+        </div>
+      </div>
+    </div>
 
-
-    <div> vaults: {{ vaults }}</div>
-    <div> keeps: {{ keeps }}</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h1><b>Keeps</b></h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div v-for="k in keeps" class="col-md-3">
+          <!-- <div v-if="account.id == keep.creatorId"> -->
+          <KeepCard :keep="k" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

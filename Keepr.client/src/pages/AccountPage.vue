@@ -89,11 +89,12 @@ export default {
 
     onMounted(() => {
 
-      getKeepsById()
+      // getKeepsById()
       getVaultsById()
       getAccountVaults()
+      getAccountKeeps()
     })
-    async function getKeepsById() {
+    async function getAccountKeeps() {
       try {
         await keepsService.getAccountKeeps(AppState.account.id)
       } catch (error) {
