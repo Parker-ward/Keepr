@@ -18,7 +18,7 @@
                 {{ keep?.description }}
               </div>
             </div>
-            <div v-if="accout.id" class="d-flex justify-content-between">
+            <div v-if="account.id" class="d-flex justify-content-between">
               <div class="dropdown">
                 <button @click.stop="addKeepToVault(editable.vault, keep.id)" class="btn btn-secondary dropdown-toggle"
                   type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,13 +63,14 @@ export default {
     const editable = ref({})
     return {
       editable,
+      account: computed(() => AppState.account),
       keep: computed(() => AppState.activeKeep),
       keeps: computed(() => AppState.keeps),
       vaults: computed(() => AppState.vaults),
 
       async addKeepToVault(vaultId, keepId) {
         try {
-          if (!vault) { Pop.error("select a vault") }
+          if (!vaultId) { Pop.error("select a vault") }
           else {
             await vaultKeepsService.addKeepToVault(vaultId, keepId)
             Pop.success("Keep has been added to your vault")

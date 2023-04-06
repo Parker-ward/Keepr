@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <!-- NOTE KeepCard Modal -->
+  <!-- NOTE KeepCard Modal--Moved to CreateKeep.vue-->
   <!-- <div class="modal" tabindex="-1" id="keepDetails">
     <div class="modal-dialog">
       <div class="modal-content">

@@ -17,8 +17,13 @@ export default {
     return {
       account: computed(() => AppState.account),
 
-      async getVaults() {
-
+      async getVaults(vault) {
+        try {
+          await vaultsService.getVaultsById(vault)
+        } catch (error) {
+          logger.log('[get vault]')
+          Pop.error(error)
+        }
       },
 
       async deleteKeep() {

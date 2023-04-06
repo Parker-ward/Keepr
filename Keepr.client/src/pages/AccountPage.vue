@@ -91,10 +91,20 @@ export default {
 
       getKeepsById()
       getVaultsById()
+      getAccountVaults()
     })
     async function getKeepsById() {
       try {
         await keepsService.getKeeps(route.params.keepId)
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+    }
+
+    async function getAccountVaults() {
+      try {
+        await vaultsService.getAccountVaults(route.params.accountId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)

@@ -31,7 +31,8 @@ import Pop from '../utils/Pop.js';
 
 export default {
   props: {
-    keep: { type: Object, required: true }
+    keep: { type: Object, required: true },
+    account: { type: Object, required: true }
   },
   setup(props) {
     const editable = ref({})

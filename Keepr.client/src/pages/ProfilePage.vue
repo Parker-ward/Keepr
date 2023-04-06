@@ -1,5 +1,6 @@
 <template>
   <KeepCard />
+  <Vault />
 </template>
 
 
@@ -10,6 +11,7 @@ import Vault from '../components/Vault.vue'
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import KeepCard from '../components/KeepCard.vue';
+import { profilesService } from '../services/ProfilesService.js'
 import { useRoute } from 'vue-router'
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
@@ -21,10 +23,24 @@ export default {
     onMounted(() => {
       getKeepsById();
       getVaultsById();
+      getUserProfile()
     });
+
+    async function getUserProfile() {
+      try {
+        const profileId = route.params.profileId
+        await profilesService.getUserProfile(id)
+      } catch (error) {
+        logger.error(error)
+        Pop.error(error)
+      }
+
+    }
+
+
     async function getKeepsById() {
       try {
-        await keepsService.getKeepsById(router.params.keepid);
+        await keepsService.getKeepsById(route.params.keepid);
       }
       catch (error) {
         logger.error(error);
@@ -52,7 +68,7 @@ export default {
       vaults: computed(() => AppState.vaults)
     };
   },
-  components: { KeepCard }
+  components: { KeepCard, Vault }
 
 }
 </script>
