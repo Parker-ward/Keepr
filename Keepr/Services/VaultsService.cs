@@ -42,7 +42,11 @@ namespace Keepr.Services
     {
       Vault vault = _repo.GetOne(id);
       if (vault == null) throw new Exception("no vault at that id");
-      if (vault.CreatorId != userId) throw new Exception("Not your Vault bruh");
+
+      if (vault.isPrivate == true)
+      {
+        if (vault.CreatorId != userId) throw new Exception("Not your Vault bruh");
+      }
 
       // NOTE keeps IN vault
       // if(vault.CreatorId != userId)

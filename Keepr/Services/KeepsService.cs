@@ -57,7 +57,11 @@ namespace Keepr.Services
     internal List<KeepInVault> GetKeepsInVault(int vaultId, string userId)
     {
       Vault vault = _vaultsService.Find(vaultId, userId);
-      if (vault.CreatorId != userId || vault.isPrivate == true) throw new Exception("that is private");
+
+      if (vault.isPrivate == true)
+      {
+        if (vault.CreatorId != userId) throw new Exception("that is not your vault...");
+      }
       List<KeepInVault> keepsInVaults = _repo.GetKeepsInVault(vaultId);
 
       // TODO check to see if the user has access to the private vault, if they do return everything, if they don't filter out the private

@@ -24,6 +24,14 @@ class VaultsService {
     let deleteIndex = AppState.vaults.findIndex.apply(v => v.id == vaultId)
     AppState.vaults.splice(deleteIndex, 1)
   }
+
+  async makePrivate(vaultId) {
+    const res = await api.delete('api/vaults' + vaultId)
+    let i = AppState.vaults.findIndex(v => v.id == vaultId)
+    if (i != -1) {
+      AppState.vaults.splice(i, 1, res.data)
+    }
+  }
 }
 
 export const vaultsService = new VaultsService()

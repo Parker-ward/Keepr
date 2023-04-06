@@ -76,10 +76,19 @@ import { vaultsService } from '../services/VaultsService.js';
 
 export default {
   props: { keep: { type: Object, requried: true } },
-  props: { vault: { type: Object, requried: true } },
+  props: { vaults: { type: Object, requried: true } },
   setup() {
+
+    // TODO get the profile id from the route
+
+    // SECTION network requests
+    // TODO get the profile based off of the route profileId 
+    // TODO get the keeps based off of route profileId
+    // TODO get the vaults based off of route profileId
+
     onMounted(() => {
       getKeeps()
+      getVaultsById()
     })
     async function getKeeps() {
       try {
@@ -102,7 +111,8 @@ export default {
     return {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults)
+      vaults: computed(() => AppState.vaults),
+
     };
   },
   components: { EditAccount },

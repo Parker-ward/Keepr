@@ -10,17 +10,16 @@ namespace Keepr.Services
       _vaultsService = vaultsService;
     }
 
-    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, int id, int vaultId)
+    internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId)
     {
-      // TODO find the vault that I am creating this keep for
-      // TODO if the user did not create that vault, they shouldn't be able to create a vaultkeep
-      Vault vault = _vaultsService.Find(vaultId);
-      if (Vault.CreatorId != userId) throw new Exception("Not your Vault bruh");
+
+      Vault vault = _vaultsService.Find(vaultKeepData.VaultId, userId);
+      if (vault.CreatorId != userId) throw new Exception("Can't create vaultkeep for other people bruh");
       VaultKeep foundVaultKeep = _repo.FindVaultKeep(vaultKeepData);
       if (foundVaultKeep != null) throw new Exception("You already have this vaultkeep");
 
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
-      if (foundVaultKeep.CreatorId != userInfo.id) throw new Exception("Not your Vault bruh");
+      if (vaultKeep.CreatorId != userId) throw new Exception("Not your Vault bruh");
       return vaultKeep;
     }
 

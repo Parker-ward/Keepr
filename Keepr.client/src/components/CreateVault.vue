@@ -19,7 +19,7 @@
     </div>
     <div class="d-flex justify-content-end">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <input @click="makePrivate" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           <p>Make Vault Private?</p>
         </label>
@@ -40,6 +40,7 @@ import { router } from '../router.js';
 import Pop from '../utils/Pop.js';
 import { vaultsService } from '../services/VaultsService.js';
 
+
 export default {
   vault: { type: Object, required: true },
 
@@ -56,6 +57,14 @@ export default {
           }
         } catch (error) {
           Pop.error(error, '[submit vault]')
+        }
+      },
+
+      async makePrivate(vaultId) {
+        try {
+          await vaultsService.makePrivate(vaultId)
+        } catch (error) {
+          Pop.error(error, "Vault is private")
         }
       }
     }
