@@ -5,37 +5,37 @@ import { api } from "./AxiosService.js"
 class VaultsService {
 
   async getAccountVaults() {
-    const res = await api.get('api/account/vaults')
+    const res = await api.get('account/vaults')
     logger.log('[Getting Account Vaults]', res.data)
-    AppState.vaults = res.data
+    AppState.accountVaults = res.data
   }
 
 
   async getVaultsById(id) {
     const res = await api.get(`api/profiles/${id}/vaults`)
     logger.log('[Getting vaults]', res.data)
-    AppState.vaults = res.data
+    AppState.profileVaults = res.data
   }
 
   async createVault(vaultData) {
     const res = await api.post('api/vaults', vaultData)
     logger.log('vault created', res.data)
-    AppState.vaults.push(res.data)
+    AppState.accountVaults.push(res.data)
     return res.data
   }
 
   async deleteVault(vaultId) {
     const res = await api.delete(`api/vaults${vaultId}`)
     logger.log('[That vault has been delete}', res.data)
-    let deleteIndex = AppState.vaults.findIndex.apply(v => v.id == vaultId)
-    AppState.vaults.splice(deleteIndex, 1)
+    let deleteIndex = AppState.accountVaults.findIndex.apply(v => v.id == vaultId)
+    AppState.accountVaults.splice(deleteIndex, 1)
   }
 
   async makePrivate(vaultId) {
     const res = await api.delete('api/vaults' + vaultId)
-    let i = AppState.vaults.findIndex(v => v.id == vaultId)
+    let i = AppState.accountVaults.findIndex(v => v.id == vaultId)
     if (i != -1) {
-      AppState.vaults.splice(i, 1, res.data)
+      AppState.accountVaults.splice(i, 1, res.data)
     }
   }
 }

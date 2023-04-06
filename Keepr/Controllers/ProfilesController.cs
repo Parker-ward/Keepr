@@ -56,7 +56,7 @@ namespace Keepr.Controllers
       try
       {
         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        List<Vault> vaults = _vaultsService.GetUserVaults(id);
+        List<Vault> vaults = _vaultsService.GetUserVaults(id, userInfo?.Id);
         return Ok(vaults);
       }
       catch (Exception e)

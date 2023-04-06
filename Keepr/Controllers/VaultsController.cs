@@ -84,8 +84,6 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-
-
     public async Task<ActionResult<List<KeepInVault>>> GetKeepsInVault(int id)
     {
       try

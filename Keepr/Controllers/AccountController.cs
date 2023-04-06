@@ -37,7 +37,7 @@ public class AccountController : ControllerBase
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      List<Vault> vaults = _vaultsService.GetUserVaults(userInfo.Id);
+      List<Vault> vaults = _vaultsService.GetUserVaults(userInfo.Id, userInfo.Id);
       return Ok(vaults);
     }
     catch (Exception e)
@@ -46,9 +46,22 @@ public class AccountController : ControllerBase
     }
   }
 
-  // TODO write method to get vaults that the acct has created
-
-  // TODO write a method to edit the acct... this is already written in the service/repo so PAY ATTENTION to the parameters
+  // TODO EDIT Account
+  [HttpPut]
+  [Authorize]
+  async public Task<ActionResult<Account>> EditAccount()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      // TODO update the user
+      return Ok(userInfo);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 
 
 }

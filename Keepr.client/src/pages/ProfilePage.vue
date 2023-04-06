@@ -1,6 +1,14 @@
 <template>
-  <KeepCard />
-  <Vault />
+  <div>
+    <h1>Hello profile page </h1>
+
+    <div> profile: {{ profile.name }} </div>
+    <div> profile: {{ profile.picture }} </div>
+
+
+    <div> vaults: {{ vaults }}</div>
+    <div> keeps: {{ keeps }}</div>
+  </div>
 </template>
 
 
@@ -15,6 +23,7 @@ import { profilesService } from '../services/ProfilesService.js'
 import { useRoute } from 'vue-router'
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
+import { vaultsService } from '../services/VaultsService.js';
 
 export default {
   setup() {
@@ -29,7 +38,7 @@ export default {
     async function getUserProfile() {
       try {
         const profileId = route.params.profileId
-        await profilesService.getUserProfile(id)
+        await profilesService.getUserProfile(profileId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)
@@ -40,7 +49,7 @@ export default {
 
     async function getKeepsById() {
       try {
-        await keepsService.getKeepsById(route.params.keepid);
+        await keepsService.getProfileKeeps(route.params.profileId);
       }
       catch (error) {
         logger.error(error);
@@ -49,7 +58,7 @@ export default {
     }
     async function getVaultsById() {
       try {
-        await vaultsService.getVaultsById(route.params.vaultId);
+        await vaultsService.getVaultsById(route.params.profileId);
       }
       catch (error) {
         logger.error(error);
@@ -64,8 +73,9 @@ export default {
     // in service
     return {
       account: computed(() => AppState.account),
-      keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults)
+      profile: computed(() => AppState.profile),
+      keeps: computed(() => AppState.profileKeeps),
+      vaults: computed(() => AppState.profileVaults)
     };
   },
   components: { KeepCard, Vault }

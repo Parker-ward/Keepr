@@ -40,7 +40,7 @@
     <div class="container-fluid">
       <div class="row">
         <div v-for="v in vaults" class="col-md-3">
-          <Vault :vaults="v" />
+          <Vault :vault="v" />
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ export default {
     })
     async function getKeepsById() {
       try {
-        await keepsService.getKeeps(route.params.keepId)
+        await keepsService.getAccountKeeps(AppState.account.id)
       } catch (error) {
         logger.error(error)
         Pop.error(error)
@@ -104,7 +104,7 @@ export default {
 
     async function getAccountVaults() {
       try {
-        await vaultsService.getAccountVaults(route.params.accountId)
+        await vaultsService.getAccountVaults()
       } catch (error) {
         logger.error(error)
         Pop.error(error)
@@ -117,13 +117,12 @@ export default {
       } catch (error) {
         logger.error(error)
         Pop.error(error)
-
       }
     }
     return {
       account: computed(() => AppState.account),
-      keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults),
+      keeps: computed(() => AppState.accountKeeps),
+      vaults: computed(() => AppState.accountVaults),
 
     };
   },

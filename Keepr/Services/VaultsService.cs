@@ -67,11 +67,11 @@ namespace Keepr.Services
       return "vault deleted";
     }
 
-    internal List<Vault> GetUserVaults(string id)
+    internal List<Vault> GetUserVaults(string id, string userId)
     {
       List<Vault> vaults = _repo.GetUserVaults(id);
-      // List<Vault> vaults = privateVault.Find(v => v.creatorId == userId || v.isPrivate == false);
-      return vaults;
+      List<Vault> pVaults = vaults.FindAll(v => v.CreatorId == userId || v.isPrivate == false);
+      return pVaults;
     }
 
 
