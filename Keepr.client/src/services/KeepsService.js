@@ -10,6 +10,15 @@ class KeepsService {
     AppState.keeps = res.data
   }
 
+  async getKeepsInVault() {
+    const res = await api.get(`api/vaults/${vaultId}/keeps`)
+  }
+  async getKeepsById(id) {
+    const res = await api.get(`api/profiles/${id}/keeps`)
+    logger.log(']Get on keep]', res.data)
+    AppState.keeps = res.data
+  }
+
   async GetActiveKeep(keep) {
     const res = await api.get(`api/keeps/${keep.id}`)
     logger.log('[Get one keep]', res.data)

@@ -71,6 +71,7 @@ import KeepCard from '../components/KeepCard.vue';
 import Vault from '../components/Vault.vue'
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
+import { useRoute } from 'vue-router';
 import { keepsService } from '../services/KeepsService.js';
 import { vaultsService } from '../services/VaultsService.js';
 
@@ -78,7 +79,7 @@ export default {
   props: { keep: { type: Object, requried: true } },
   props: { vaults: { type: Object, requried: true } },
   setup() {
-
+    const route = useRoute()
     // TODO get the profile id from the route
 
     // SECTION network requests
@@ -87,12 +88,13 @@ export default {
     // TODO get the vaults based off of route profileId
 
     onMounted(() => {
-      getKeeps()
+
+      getKeepsById()
       getVaultsById()
     })
-    async function getKeeps() {
+    async function getKeepsById() {
       try {
-        await keepsService.getKeeps()
+        await keepsService.getKeeps(route.params.keepId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)
@@ -101,7 +103,7 @@ export default {
 
     async function getVaultsById() {
       try {
-        await vaultsService.getVaultsById()
+        await vaultsService.getVaultsById(route.params.vaultId)
       } catch (error) {
         logger.error(error)
         Pop.error(error)

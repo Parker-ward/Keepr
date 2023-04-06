@@ -1,17 +1,17 @@
 <template>
   <div class="rounded-circle delete-btn">
-    <div v-if="account.id == keep.creatorId" title="Delete Keep??">
+    <div v-if="account.id == keep?.creatorId" title="Delete Keep??">
       <button @click="deleteKeep" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
     </div>
     <div @click="GetActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#keepDetails">
-      <img class="img-fluid rounded" :src="keep.img" alt="">
+      <img class="img-fluid rounded" :src="keep?.img" alt="">
     </div>
 
 
-    <span class="pt-2 d-flex rounded justify-content-between text-light  p-3 name"><b>{{ keep.name
+    <span class="pt-2 d-flex rounded justify-content-between text-light  p-3 name"><b>{{ keep?.name
     }}</b>
-      <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
-        <img class="rounded-circle p-2 creator-img" :src="keep.creator.picture" alt="">
+      <router-link :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
+        <img class="rounded-circle p-2 creator-img" :src="keep?.creator.picture" alt="">
       </router-link>
     </span>
 
