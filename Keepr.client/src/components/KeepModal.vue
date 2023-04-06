@@ -14,25 +14,22 @@
               <div class="col-md-6 ">
                 <img class="img-fluid pb-2" :src="keep?.img" alt="">
               </div>
-              <!-- <div class="container-fluid">
-                <div class="row"> -->
               <div class="col-md-6">
                 {{ keep?.description }}
-                <!-- </div>
-                    </div> -->
               </div>
             </div>
-            <div class="d-flex justify-content-between">
+            <div v-if="accout.id" class="d-flex justify-content-between">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Dropdown button
+                <button @click.stop="addKeepToVault(editable.vault, keep.id)" class="btn btn-secondary dropdown-toggle"
+                  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Add to Vault
                 </button>
-                <ul class="dropdown-menu">
+                <option v-for="vault in vaults" :value="vault.id" selected>{{ vault.name }}</option>
+                <!-- <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                </ul> -->
               </div>
               <router-link v-if="keep?.creatorId" :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
                 <img data-bs-dismiss="modal" data-bs-target="#keepDetails" class="rounded-circle creator-img"
@@ -53,14 +50,36 @@
 <script>
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
+import { ref } from 'vue';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 
 
 
 export default {
 
+
   setup() {
+    const editable = ref({})
     return {
-      keep: computed(() => AppState.activeKeep)
+      editable,
+      keep: computed(() => AppState.activeKeep),
+      keeps: computed(() => AppState.keeps),
+      vaults: computed(() => AppState.vaults),
+
+      async addKeepToVault(vaultId, keepId) {
+        try {
+          if (!vault) { Pop.error("select a vault") }
+          else {
+            await vaultKeepsService.addKeepToVault(vaultId, keepId)
+            Pop.success("Keep has been added to your vault")
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error)
+        }
+
+      }
     };
   },
 
