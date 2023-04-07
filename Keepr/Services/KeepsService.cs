@@ -32,6 +32,8 @@ namespace Keepr.Services
       original.Name = keepData.Name != null ? keepData.Name : original.Name;
       original.Description = keepData.Description != null ? keepData.Description : original.Description;
       original.Img = keepData.Img != null ? keepData.Img : original.Img;
+      original.Kept = keepData.Kept != null ? keepData.Kept : original.Kept;
+      original.Views = keepData.Views != null ? keepData.Views : original.Views;
       int rowsAffected = _repo.UpdateKeep(original);
       if (rowsAffected == 0) throw new Exception("Could not modify");
       if (rowsAffected > 1) throw new Exception("Something went wrong");

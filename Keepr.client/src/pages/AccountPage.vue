@@ -25,7 +25,11 @@
       <!-- NOTE for background img -->
       <img class="img-fluid rounded pt-2" :src="account.coverImg" alt="">
       <!-- NOTE ^^^ for backgroung img -->
-      <img class="rounded-circle p-2" :src="account.picture" alt="" />
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <img class="rounded-circle" height="300" width="300" :src="account.picture" alt="" />
+        </div>
+      </div>
       <h1>Welcome {{ account.name }}</h1>
       <p>{{ account.name }}</p>
     </div>
@@ -141,6 +145,8 @@ export default {
 img {
   max-width: 100px;
 }
+
+
 
 .bg {
   background-color: #fef6f0;
