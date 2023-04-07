@@ -25,7 +25,7 @@ namespace Keepr.Services
 
     internal Keep EditKeep(int id, Keep keepData, Account userInfo)
     {
-      Keep original = this.Find(id);
+      Keep original = this.Find(id, userInfo.Id);
       if (original.CreatorId != userInfo.Id) throw new Exception("Not your Vault bruh");
       // TODO check to make sure that the user is allowed to edit this...throw an error if not
 
@@ -39,17 +39,20 @@ namespace Keepr.Services
       if (rowsAffected > 1) throw new Exception("Something went wrong");
       return original;
     }
-    internal Keep Find(int id)
+    internal Keep Find(int id, string userId)
     {
       Keep keep = _repo.GetOne(id);
       if (keep == null) throw new Exception("Nope");
+      if (keep.CreatorId != userId)
+        keep.Views++;
+      _repo.UpdateKeep(keep);
       return keep;
     }
 
     internal string DeleteKeep(int id, Account userInfo)
     {
       // TODO check to make sure user has the right to delete this...throw an error if not
-      Keep keep = this.Find(id);
+      Keep keep = this.Find(id, userInfo.Id);
       if (keep.CreatorId != userInfo.Id) throw new Exception("Not your Vault bruh");
       bool result = _repo.DeleteKeep(id);
       if (!result) throw new Exception("something went wrong when trying to delete");

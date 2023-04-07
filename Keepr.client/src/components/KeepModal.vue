@@ -11,9 +11,9 @@
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
-              <h3 class="d-flex justify-content-center"><i class="mdi mdi-eye">{{ keep.views }}</i>
+              <h3 class="d-flex justify-content-center"><i class="mdi mdi-eye">{{ keep?.views }}</i>
                 <i class="mdi mdi-alpha-k-box-outline">{{
-                  keep.kept }}</i>
+                  keep?.kept }}</i>
               </h3>
 
             </div>

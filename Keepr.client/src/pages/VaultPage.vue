@@ -57,7 +57,7 @@ export default {
       catch (error) {
         logger.error(error);
         Pop.error(error);
-        router.push({ name: 'Home' })
+        router.push({ path: '/' })
       }
     }
 

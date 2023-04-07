@@ -39,7 +39,6 @@ namespace Keepr.Controllers
         keepData.CreatorId = userInfo.Id;
         Keep keep = _keepsService.CreateKeep(keepData);
         keep.Creator = userInfo;
-        // creator?
         return Ok(keep);
       }
       catch (Exception e)
@@ -49,12 +48,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Keep> Find(int id)
+    public async Task<ActionResult<Keep>> FindAsync(int id)
     {
       try
       {
-        // Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-        Keep keep = _keepsService.Find(id);
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        Keep keep = _keepsService.Find(id, userInfo.Id);
         return Ok(keep);
       }
       catch (Exception e)

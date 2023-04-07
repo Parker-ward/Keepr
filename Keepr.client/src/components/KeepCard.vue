@@ -1,10 +1,11 @@
 <template>
   <div class="rounded-circle delete-btn">
-    <div v-if="account.id == keep?.creatorId" title="Delete Keep??">
+    <div v-if="account.id == keep?.creatorId && route.path == '/'" title="Delete Keep??">
       <button @click="deleteKeep" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
       <!-- TODO this button should only show up if its a vaultkeep and its my vault-->
-      <button @click="deleteKeepInVault(keep.vaultKeepId)" class="btn btn-info">Delete Vault Keep</button>
     </div>
+    <button v-if="route.path != '/'" @click="deleteKeepInVault(keep.vaultKeepId)" class="btn btn-info">Delete Vault
+      Keep</button>
     <div @click="GetActiveKeep(keep)" data-bs-toggle="modal" data-bs-target="#keepDetails">
       <img class="img-fluid rounded" :src="keep?.img" alt="">
     </div>
@@ -30,13 +31,17 @@ import { keepsService } from '../services/KeepsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultKeepsService } from '../services/VaultKeepsService.js';
+import { useRoute } from 'vue-router';
 
 
 
 export default {
+
   props: { keep: { type: Object, required: true } },
   setup(props) {
+    const route = useRoute()
     return {
+      route,
       account: computed(() => AppState.account),
 
       async GetActiveKeep(keep) {

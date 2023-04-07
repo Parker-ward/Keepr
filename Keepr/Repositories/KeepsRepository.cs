@@ -45,10 +45,13 @@ namespace Keepr.Repositories
       string sql = @"
       SELECT
       k.*,
+      COUNT(vk.id) AS Kept,
       acct.*
       FROM keep k
+      LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
       JOIN accounts acct ON k.creatorId = acct.id
-      WHERE k.id = @id;
+      WHERE k.id = @id
+      GROUP BY k.id;
       ";
       Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
       {
@@ -65,7 +68,7 @@ namespace Keepr.Repositories
         SET
         name = @name,
         description = @description,
-        img = @img
+        img = @img,
         views = @views
         WHERE id = @id;
         ";

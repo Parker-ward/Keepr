@@ -3,6 +3,7 @@
     <div v-if="account.id == vault?.creatorId" title="Delete Vault??">
       <button @click="deleteVault" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>
     </div>
+    <div v-if="vault.isPrivate" class="text-end"><i class="mdi mdi-lock"></i></div>
     <router-link :to="{ name: 'Vaults', params: { vaultId: vault?.id } }">
       <img class="img-fluid rounded" :src="vault?.img" alt="">
     </router-link>

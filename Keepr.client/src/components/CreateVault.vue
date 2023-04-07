@@ -19,7 +19,7 @@
     </div>
     <div class="d-flex justify-content-end">
       <div class="form-check">
-        <input @click="makePrivate" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" v-model="editable.isPrivate" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           <p>Make Vault Private?</p>
         </label>
