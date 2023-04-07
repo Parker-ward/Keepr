@@ -81,7 +81,7 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY (vaultId) REFERENCES vault(id) ON DELETE CASCADE,
         FOREIGN KEY (keepId) REFERENCES keep(id) ON DELETE CASCADE,
-        UNIQUE (creatorId, vaultId)
+        UNIQUE (keepId, vaultId)
     ) default charset utf8 COMMENT '';
 
 INSERT INTO

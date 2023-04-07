@@ -31,11 +31,11 @@
 
               <div class="my-2">
                 <div>
-                  <form v-if="account.id" @submit.prevent="addKeepToVault(editable.value, keep.id)" class="d-flex">
+                  <form v-if="account.id" @submit.prevent="addKeepToVault(keep.id)" class="d-flex">
                     <button @click.stop type="submit" class="btn btn-outline-dark rounded-left d-flex flex-wrap m-auto">
                       Add To Vault
                     </button>
-                    <select placeholder="select a deck" @click.stop v-model="editable.value"
+                    <select placeholder="select a deck" @click.stop v-model="editable.vaultId"
                       class="form-select rounded-right w-75 m-auto " aria-label="Default select example">
                       <option v-for="vault in vaults" :value="vault.id" selected>{{
                         vault.name }}</option>
@@ -111,11 +111,18 @@ export default {
       keeps: computed(() => AppState.keeps),
       vaults: computed(() => AppState.accountVaults),
 
-      async addKeepToVault(vaultId, keepId) {
+      async addKeepToVault(keepId) {
         try {
+
+          const vaultId = editable.value
+          const body = {
+            ...vaultId,
+            keepId: keepId
+          }
+          logger.log('[vaultId]', body)
           if (!vaultId) { Pop.error("select a vault") }
           else {
-            await vaultKeepsService.addKeepToVault(vaultId, keepId)
+            await vaultKeepsService.addKeepToVault(body)
             Pop.success("Keep has been added to your vault")
           }
         } catch (error) {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center mt-2">
-      <h1> Vault: {{ vaults.name }}</h1>
+      <h1> Vault: {{ vault?.name }}</h1>
     </div>
     <div class="container-fluid">
       <div class="row">
