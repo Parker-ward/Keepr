@@ -3,7 +3,10 @@
 
 
     <div class="text-center mt-3">
-      <img class="rounded" :src="profile?.picture" alt="">
+      <img class="rounded" :src="profile?.coverImg" alt="">
+    </div>
+    <div class="text-center">
+      <img class="rounded-circle prof-img" :src="profile?.picture" alt="">
     </div>
     <div class="text-center fs-1"> <b>{{ profile?.name }}</b> </div>
     <div class="text-center">
@@ -117,4 +120,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.prof-img {
+  height: 200px;
+  width: 200px;
+  transform: translateY(-30%);
+}
+</style>

@@ -23,15 +23,18 @@
     </div>
     <div class="about text-center">
       <!-- NOTE for background img -->
-      <img class="img-fluid rounded pt-2" :src="account.coverImg" alt="">
+      <img class="img-fluid rounded pt-2 cover-img" :src="account.coverImg" alt="">
       <!-- NOTE ^^^ for backgroung img -->
       <div class="row justify-content-center">
         <div class="col-md-12">
-          <img class="rounded-circle" height="300" width="300" :src="account.picture" alt="" />
+          <img class="rounded-circle prof-img" :src="account.picture" alt="" />
         </div>
       </div>
-      <h1>Welcome {{ account.name }}</h1>
-      <p>{{ account.name }}</p>
+      <p class="fs-1">{{ account.name }}</p>
+      <div class="text-center">
+        <p class="fs-4"><u>Keeps:</u>{{ keepCount }}</p>
+        <p class="fs-4"><u>Vaults:</u>{{ vaultCount }}</p>
+      </div>
     </div>
 
     <h1 class="text-center mb-5"><b><u>Vaults</u></b></h1>
@@ -132,6 +135,8 @@ export default {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.accountKeeps),
       vaults: computed(() => AppState.accountVaults),
+      keepCount: computed(() => AppState.accountKeeps.length),
+      vaultCount: computed(() => AppState.accountVaults.length),
 
     };
   },
@@ -142,13 +147,15 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
-}
-
-
-
 .bg {
   background-color: #fef6f0;
 }
+
+.prof-img {
+  height: 200px;
+  width: 200px;
+  transform: translateY(-30%);
+}
+
+.cover-img {}
 </style>
