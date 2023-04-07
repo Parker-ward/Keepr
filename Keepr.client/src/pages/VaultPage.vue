@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div v-for="vk in keepsinvault" class="col-md-3">
-      <KeepCard :keep="vk" />
+    <div class="container-fluid">
+      <div class="row">
+        <div v-for="vk in keepsinvault" class="col-md-3 mt-3">
+          <KeepCard :keep="vk" />
+
+        </div>
+      </div>
 
     </div>
 

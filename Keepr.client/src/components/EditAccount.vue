@@ -45,7 +45,7 @@ export default {
           logger.log(formData)
         } catch (error) {
           logger.error
-          Pop.error(error)
+          Pop.error(error.message)
 
         }
       }

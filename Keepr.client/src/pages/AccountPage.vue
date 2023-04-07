@@ -23,7 +23,7 @@
     </div>
     <div class="about text-center">
       <!-- NOTE for background img -->
-      <img src="" alt="">
+      <img class="img-fluid rounded pt-2" :src="account.coverImg" alt="">
       <!-- NOTE ^^^ for backgroung img -->
       <img class="rounded-circle p-2" :src="account.picture" alt="" />
       <h1>Welcome {{ account.name }}</h1>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { AppState } from '../AppState'
 import EditAccount from '../components/EditAccount.vue';
 import KeepCard from '../components/KeepCard.vue';
@@ -79,6 +79,7 @@ export default {
   props: { keep: { type: Object, requried: true } },
   props: { vaults: { type: Object, requried: true } },
   setup() {
+    const editable = ref({})
     const route = useRoute()
     // TODO get the profile id from the route
 
@@ -120,7 +121,10 @@ export default {
         Pop.error(error)
       }
     }
+
+
     return {
+      editable,
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.accountKeeps),
       vaults: computed(() => AppState.accountVaults),

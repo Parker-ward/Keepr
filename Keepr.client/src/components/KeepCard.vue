@@ -1,5 +1,4 @@
 <template>
-  {{ keep.vaultKeepId }}
   <div class="rounded-circle delete-btn">
     <div v-if="account.id == keep?.creatorId" title="Delete Keep??">
       <button @click="deleteKeep" class="btn btn-danger pt-1 pb-2 rounded delete">Delete</button>

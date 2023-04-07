@@ -24,12 +24,14 @@
                   aria-expanded="false">
                   Add to Vault
                 </button>
+
                 <ul class="dropdown-menu">
                   <li class="selectable p-1" v-for="vault in vaults" :value="vault.id"
                     @click.stop="addKeepToVault(editable.vault, keep.id)">{{
                       vault.name }}</li>
                 </ul>
               </div>
+
 
               <router-link v-if="keep?.creatorId" :to="{ name: 'Profile', params: { profileId: keep?.creatorId } }">
                 <img data-bs-dismiss="modal" data-bs-target="#keepDetails" class="rounded-circle creator-img"

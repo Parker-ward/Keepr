@@ -49,11 +49,14 @@ public class AccountController : ControllerBase
   // TODO EDIT Account
   [HttpPut]
   [Authorize]
-  async public Task<ActionResult<Account>> EditAccount()
+  async public Task<ActionResult<Account>> EditAccount([FromBody] Account editData)
   {
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      editData.Id = userInfo.Id;
+      // accountData.Id = userEmail;
+      Account accounts = _accountService.EditAccount(editData, userInfo.Email);
       // TODO update the user
       return Ok(userInfo);
     }

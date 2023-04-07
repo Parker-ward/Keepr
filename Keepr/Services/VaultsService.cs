@@ -27,7 +27,6 @@ namespace Keepr.Services
 
       Vault original = this.Find(id, userInfo.Id);
       if (original.CreatorId != userInfo.Id) throw new Exception("not your vault to edit");
-      // TODO check to see if user has rights to edit this vault...if not throw an error
       original.Name = vaultData.Name != null ? vaultData.Name : original.Name;
       original.Description = vaultData.Description != null ? vaultData.Description : original.Description;
       original.Img = vaultData.Img != null ? vaultData.Img : original.Img;

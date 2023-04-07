@@ -8,6 +8,16 @@ CREATE TABLE
         picture varchar(255) COMMENT 'User Picture'
     ) default charset utf8 COMMENT '';
 
+ALTER TABLE accounts ADD CoverImg VARCHAR(500);
+
+INSERT INTO
+    accounts(id, CoverImg)
+VALUES
+(
+        1,
+        'https://images.unsplash.com/photo-1509486432407-f8fb9cc99acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'
+    );
+
 CREATE TABLE
     keep(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -85,11 +95,9 @@ SELECT vk.*, k.*, creator.*
 FROM vaultKeeps vk
     JOIN keep k ON vk.keepId = k.id
     JOIN accounts creator ON k.creatorId = creator.id
-WHERE
-    vk.vaultId = @vaultId;
+WHERE vk.vaultId = @vaultId;
 
 SELECT k.* creator.*
 FROM keep k
     JOIN accounts creator ON k.creatorId = creator.id
-WHERE
-    k.creatorId = @creatorId;
+WHERE k.creatorId = @creatorId;
