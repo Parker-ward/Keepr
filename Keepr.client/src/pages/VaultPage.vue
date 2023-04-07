@@ -2,6 +2,9 @@
   <div>
     <div class="text-center mt-2">
       <h1> Vault: {{ vault?.name }}</h1>
+      <img class="rounded" :src="vault?.img" alt="">
+
+      <p class="fs-3"><u>Keeps:</u>{{ count }}</p>
     </div>
     <div class="container-fluid">
       <div class="row">
@@ -63,6 +66,7 @@ export default {
 
     return {
       vault: computed(() => AppState.vault),
+      count: computed(() => AppState.keepsInVault.length),
       vaults: computed(() => AppState.vault),
       account: computed(() => AppState.account),
       keepsinvault: computed(() => AppState.keepsInVault),

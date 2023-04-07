@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$gap: 5em;
+$gap: 1.3em;
 
 .bricks {
   columns: 300px;

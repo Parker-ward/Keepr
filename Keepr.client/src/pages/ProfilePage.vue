@@ -1,15 +1,19 @@
 <template>
   <div>
-    <h1>Hello profile page </h1>
 
-    <div> profile: {{ profile?.name }} </div>
-    <div> profile:
-      <img :src="profile?.picture" alt="">
+
+    <div class="text-center mt-3">
+      <img class="rounded" :src="profile?.picture" alt="">
+    </div>
+    <div class="text-center fs-1"> <b>{{ profile?.name }}</b> </div>
+    <div class="text-center">
+      <p class="fs-4"><u>Keeps:</u>{{ count }}</p>
+      <p class="fs-4"><u>Vaults:</u>{{ vaultCount }}</p>
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
-          <h1><b>Vaults</b></h1>
+        <div class="col-md-12">
+          <h1 class="text-center"><b><u>Vaults</u></b></h1>
         </div>
       </div>
     </div>
@@ -102,7 +106,9 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.profileKeeps),
-      vaults: computed(() => AppState.profileVaults)
+      vaults: computed(() => AppState.profileVaults),
+      count: computed(() => AppState.profileKeeps.length),
+      vaultCount: computed(() => AppState.profileVaults.length),
     };
   },
   components: { KeepCard, Vault }
