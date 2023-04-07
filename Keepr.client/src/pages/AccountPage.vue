@@ -30,10 +30,10 @@
       <p>{{ account.name }}</p>
     </div>
 
+    <h1 class="text-center mb-5"><b><u>Vaults</u></b></h1>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h1><b>Vaults</b></h1>
         </div>
       </div>
     </div>
@@ -44,10 +44,10 @@
         </div>
       </div>
     </div>
+    <h1 class="text-center mb-5"><b><u>Keeps</u></b></h1>
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h1><b>Keeps</b></h1>
         </div>
       </div>
     </div>

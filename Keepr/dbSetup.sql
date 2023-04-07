@@ -12,8 +12,7 @@ ALTER TABLE accounts ADD CoverImg VARCHAR(500);
 
 INSERT INTO
     accounts(id, CoverImg)
-VALUES
-(
+VALUES (
         1,
         'https://images.unsplash.com/photo-1509486432407-f8fb9cc99acd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'
     );
@@ -27,6 +26,8 @@ CREATE TABLE
         img VARCHAR(255) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+ALTER TABLE keep ADD kept INT NOT NULL DEFAULT 0;
 
 DROP TABLE keep;
 

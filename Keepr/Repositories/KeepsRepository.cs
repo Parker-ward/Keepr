@@ -66,6 +66,7 @@ namespace Keepr.Repositories
         name = @name,
         description = @description,
         img = @img
+        views = @views
         WHERE id = @id;
         ";
       int rows = _db.Execute(sql, origianl);
